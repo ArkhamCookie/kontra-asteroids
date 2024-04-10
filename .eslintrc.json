@@ -1,0 +1,33 @@
+{
+  "root": true,
+  "extends": ["eslint:recommended", "standard"],
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"globals": {},
+  "rules": {
+    "indent": ["warn", "tab"],
+		"no-fallthrough": [
+			"warn", {
+				"allowEmptyCase": true
+			}
+		],
+    "no-tabs": "off",
+		"no-self-assign": "off",
+    "no-unused-vars": [
+			"warn", {
+				"vars": "local",
+				"varsIgnorePattern": "^_",
+				"args": "after-used"
+			}
+		],
+		"space-before-function-paren": ["warn", "never"],
+		"yoda": [
+			"warn",
+			"never", {
+				"onlyEquality": true
+			}
+		]
+  }
+}
