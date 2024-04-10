@@ -1,0 +1,29 @@
+# Arkham's ESM .gitignore
+# https://arkhamcookie.com
+
+# secrets
+.env*
+!.env.defaults
+!.env.example
+!.env.test*
+
+# package manager
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+yarn/
+deno.lock
+bun.lockb
+
+# cache
+.cache/
+.DS_Store
+
+# output
+out/
+
+# conifgs
+.vscode/
+.idea/
+.vim
