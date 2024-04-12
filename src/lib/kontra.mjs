@@ -2,7 +2,7 @@
  * @preserve
  * Kontra.js v9.0.0
  */
-var kontra = (function () {
+export var kontra = (function () {
 
   let noop = () => {};
 
