@@ -21,29 +21,35 @@ function createAsteroid() {
 	sprites.push(asteroid)
 }
 
+for (let i = 0; i < 4; i++) {
+	createAsteroid()
+}
+
 const loop = kontra.GameLoop({
 	update() {
-		asteroid.update()
+		sprites.map(sprite => {
+			sprite.update()
 
-		// Beyond left edge
-		if (asteroid.x < -asteroid.radius) {
-			asteroid.x = canvas.width + asteroid.radius
-		}
-		// Beyond right edge
-		if (asteroid.x > canvas.width + asteroid.radius) {
-			asteroid.x = 0 - asteroid.radius
-		}
-		// Beyond top edge
-		if (asteroid.y < -asteroid.radius) {
-			asteroid.y = canvas.width + asteroid.radius
-		}
-		// Beyond bottom edge
-		if (asteroid.y > canvas.width + asteroid.radius) {
-			asteroid.y = -asteroid.radius
-		}
+			// Beyond left edge
+			if (sprite.x < -sprite.radius) {
+				sprite.x = canvas.width + sprite.radius
+			}
+			// Beyond right edge
+			if (sprite.x > canvas.width + sprite.radius) {
+				sprite.x = 0 - sprite.radius
+			}
+			// Beyond top edge
+			if (sprite.y < -sprite.radius) {
+				sprite.y = canvas.height + sprite.radius
+			}
+			// Beyond bottom edge
+			if (sprite.y > canvas.height + sprite.radius) {
+				sprite.y = -sprite.radius
+			}
+		})
 	},
 	render() {
-		asteroid.render()
+		sprites.map(sprite => sprite.render())
 	}
 })
 loop.start()
