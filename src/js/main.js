@@ -17,3 +17,30 @@ const asteroid = kontra.Sprite({
 	}
 })
 asteroid.render()
+
+const loop = kontra.GameLoop({
+	update() {
+		asteroid.update()
+
+		// Beyond left edge
+		if (asteroid.x < -asteroid.radius) {
+			asteroid.x = canvas.width + asteroid.radius
+		}
+		// Beyond right edge
+		if (asteroid.x > canvas.width + asteroid.radius) {
+			asteroid.x = 0 - asteroid.radius
+		}
+		// Beyond top edge
+		if (asteroid.y < -asteroid.radius) {
+			asteroid.y = canvas.width + asteroid.radius
+		}
+		// Beyond bottom edge
+		if (asteroid.y > canvas.width + asteroid.radius) {
+			asteroid.y = -asteroid.radius
+		}
+	},
+	render() {
+		asteroid.render()
+	}
+})
+loop.start()
