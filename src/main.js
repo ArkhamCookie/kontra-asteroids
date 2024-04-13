@@ -3,14 +3,14 @@ import { kontra } from './lib/kontra.mjs'
 const { canvas } = kontra.init()
 let sprites = []
 
-function createAsteroid() {
+function createAsteroid(x, y, radius) {
 	const asteroid = kontra.Sprite({
 		type: 'asteroid',
-		x: 100,
-		y: 100,
+		x,
+		y,
 		dx: Math.random() * 4 - 2,
 		dy: Math.random() * 4 - 2,
-		radius: 30,
+		radius,
 		render() {
 			this.context.strokeStyle = 'white'
 			this.context.beginPath()
@@ -22,7 +22,7 @@ function createAsteroid() {
 }
 
 for (let i = 0; i < 4; i++) {
-	createAsteroid()
+	createAsteroid(100, 100, 30)
 }
 
 kontra.initKeys()
@@ -122,6 +122,12 @@ const loop = kontra.GameLoop({
 							if (Math.hypot(dx, dy) < asteroid.radius + sprite.radius) {
 								asteroid.ttl = 0
 								sprite.ttl = 0
+
+								if (asteroid.radius > 10) {
+									for (let x = 0; x < 3; x++) {
+										createAsteroid(asteroid.x, asteroid.y, asteroid.radius / 2.5)
+									}
+								}
 								break
 							}
 						}
