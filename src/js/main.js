@@ -25,6 +25,49 @@ for (let i = 0; i < 4; i++) {
 	createAsteroid()
 }
 
+kontra.initKeys()
+
+const ship = kontra.Sprite({
+	x: 300,
+	y: 300,
+	radius: 6,
+	render() {
+		this.context.strokeStyle = 'white'
+		this.context.beginPath()
+		this.context.moveTo(-3, -5)
+		this.context.lineTo(12, 0)
+		this.context.lineTo(-3, 5)
+		this.context.closePath()
+		this.context.stroke()
+	},
+	update() {
+		if (kontra.keyPressed('arrowleft')) {
+			this.rotation += kontra.degToRad(-4)
+		} else if (kontra.keyPressed('arrowright')) {
+			this.rotation += kontra.degToRad(4)
+		}
+
+		const cos = Math.cos(this.rotation)
+		const sin = Math.sin(this.rotation)
+
+		// TODO: Improve breaking
+		if (kontra.keyPressed('arrowup')) {
+			this.ddx = cos * 0.05
+			this.ddy = sin * 0.05
+		} else {
+			this.ddx = 0
+			this.ddy = 0
+		}
+		this.advance()
+
+		if (this.velocity.length() > 5) {
+			this.dx *= 0.95
+			this.dy *= 0.95
+		}
+	}
+})
+sprites.push(ship)
+
 const loop = kontra.GameLoop({
 	update() {
 		// eslint-disable-next-line array-callback-return
