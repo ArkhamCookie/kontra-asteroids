@@ -106,11 +106,32 @@ const loop = kontra.GameLoop({
 			if (sprite.y > canvas.height + sprite.radius) {
 				sprite.y = -sprite.radius
 			}
+
+			// Collision detection
+			for (let i = 0; i < sprites.length; i++) {
+				// Only check for collision against asteroids
+				if (sprites[i].type === 'asteroid') {
+					// Don't check asteroid vs asteroid collisions
+					for (let j = 0; j < sprites.length; j++) {
+						if (sprites[j].type !== 'asteroid') {
+							const asteroid = sprites[i]
+							const sprite = sprites[j]
+							const dx = asteroid.x - sprite.x
+							const dy = asteroid.y - sprite.y
+
+							if (Math.hypot(dx, dy) < asteroid.radius + sprite.radius) {
+								asteroid.ttl = 0
+								sprite.ttl = 0
+								break
+							}
+						}
+					}
+				}
+			} sprites = sprites.filter(sprite => sprite.isAlive())
 		})
 	},
 	render() {
 		sprites.map(sprite => sprite.render())
-		sprites = sprites.filter(sprite => sprite.isAlive())
 	}
 })
 loop.start()
