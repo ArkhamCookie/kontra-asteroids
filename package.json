@@ -1,7 +1,8 @@
 {
 	"scripts": {
 		"lint": "eslint src/main.js",
-		"dev": "vite src/"
+		"dev": "vite src/",
+		"build": "vite build src/ --outDir=../dist --emptyOutDir"
 	},
 	"devDependencies": {
 		"eslint": "^8.0.0",
