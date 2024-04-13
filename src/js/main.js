@@ -65,6 +65,7 @@ const ship = kontra.Sprite({
 			this.dy *= 0.95
 		}
 
+		// TODO: Only allow player to shoot every 4 seconds
 		if (kontra.keyPressed('space')) {
 			const bullet = kontra.Sprite({
 				color: 'white',
