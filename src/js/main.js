@@ -1,7 +1,7 @@
 import { kontra } from '../lib/kontra.mjs'
 
 const { canvas, context } = kontra.init()
-let sprites = []
+const sprites = []
 
 function createAsteroid() {
 	const asteroid = kontra.Sprite({
@@ -14,7 +14,7 @@ function createAsteroid() {
 		render() {
 			this.context.strokeStyle = 'white'
 			this.context.beginPath()
-			this.context.arc(0, 0, this.radius, 0, Math.PI*2)
+			this.context.arc(0, 0, this.radius, 0, Math.PI * 2)
 			this.context.stroke()
 		}
 	})
@@ -27,6 +27,7 @@ for (let i = 0; i < 4; i++) {
 
 const loop = kontra.GameLoop({
 	update() {
+		// eslint-disable-next-line array-callback-return
 		sprites.map(sprite => {
 			sprite.update()
 
