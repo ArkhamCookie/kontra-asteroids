@@ -1,4 +1,4 @@
-import { kontra } from '../lib/kontra.mjs'
+import { kontra } from './lib/kontra.mjs'
 
 const { canvas } = kontra.init()
 let sprites = []

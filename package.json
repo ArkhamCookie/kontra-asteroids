@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"lint": "eslint src/js/*.js",
+		"lint": "eslint src/main.js",
 		"dev": "vite src/"
 	},
 	"devDependencies": {
