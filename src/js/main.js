@@ -1,7 +1,7 @@
 import { kontra } from '../lib/kontra.mjs'
 
 const { canvas, context } = kontra.init()
-const sprites = []
+let sprites = []
 
 function createAsteroid() {
 	const asteroid = kontra.Sprite({
@@ -64,6 +64,21 @@ const ship = kontra.Sprite({
 			this.dx *= 0.95
 			this.dy *= 0.95
 		}
+
+		if (kontra.keyPressed('space')) {
+			const bullet = kontra.Sprite({
+				color: 'white',
+				x: this.x + cos * 12,
+				y: this.y + sin * 12,
+				dx: this.dx + cos * 5,
+				dy: this.dy + sin * 5,
+				ttl: 50,
+				radius: 2,
+				width: 2,
+				height: 2
+			})
+			sprites.push(bullet)
+		}
 	}
 })
 sprites.push(ship)
@@ -94,6 +109,7 @@ const loop = kontra.GameLoop({
 	},
 	render() {
 		sprites.map(sprite => sprite.render())
+		sprites = sprites.filter(sprite => sprite.isAlive())
 	}
 })
 loop.start()
