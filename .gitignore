@@ -22,6 +22,7 @@ bun.lockb
 
 # output
 out/
+dist/
 
 # conifgs
 .vscode/
