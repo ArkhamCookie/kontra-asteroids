@@ -1,6 +1,6 @@
 import { kontra } from '../lib/kontra.mjs'
 
-const { canvas, context } = kontra.init()
+const { canvas } = kontra.init()
 let sprites = []
 
 function createAsteroid() {
